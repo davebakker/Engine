@@ -6,10 +6,12 @@
 
 #include "Source/Graphics/ApplicationWindow.h"
 
-const char* engineVersion = "v0.0.2";
+const char* engineVersion = "v0.0.3";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
+
+const bool fullscreen = true;
 
 /* Error event function */
 static void error_callback(int t_error, const char* t_description)
@@ -36,7 +38,7 @@ int main()
 	/* Sets the amount frames to wait until swapping the buffers */
 	//glfwSwapInterval(1);
 
-	ApplicationWindow window(engineVersion, windowWidth, windowHeight);
+	ApplicationWindow window(engineVersion, windowWidth, windowHeight, fullscreen);
 
 	while (!window.closed())
 	{

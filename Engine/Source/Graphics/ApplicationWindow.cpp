@@ -1,7 +1,7 @@
 #include "ApplicationWindow.h"
 
-ApplicationWindow::ApplicationWindow(const char* t_engineVersion, int t_windowWidth, int t_windowHeight) 
-	: m_engineVersion(t_engineVersion), m_windowWidth(t_windowWidth), m_windowHeight(t_windowHeight)
+ApplicationWindow::ApplicationWindow(const char* t_engineVersion, int t_windowWidth, int t_windowHeight, bool t_fullscreen) 
+	: m_engineVersion(t_engineVersion), m_windowWidth(t_windowWidth), m_windowHeight(t_windowHeight), m_fullscreen(t_fullscreen)
 {
 	initialize();
 }
@@ -17,8 +17,24 @@ ApplicationWindow::~ApplicationWindow()
 
 void ApplicationWindow::initialize()
 {
-	/* Creates a window */
-	m_window = glfwCreateWindow(m_windowWidth, m_windowHeight, m_engineVersion, NULL, NULL);
+	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+	const int fullscreenWidth = mode->width;
+	const int fullscreenHeight = mode->height;
+
+	if (m_fullscreen)
+	{
+		/* Creates a fullscreen window */
+		m_window = glfwCreateWindow(fullscreenWidth, fullscreenHeight, m_engineVersion, monitor, NULL);
+
+	}
+	else
+	{
+		/* Creates a window */
+		m_window = glfwCreateWindow(m_windowWidth, m_windowHeight, m_engineVersion, NULL, NULL);
+	}
+
 
 	if (!m_window)
 	{

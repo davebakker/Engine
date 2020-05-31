@@ -11,6 +11,8 @@ private:
 	int m_windowWidth;
 	int m_windowHeight;
 
+	bool m_fullscreen;
+
 	GLFWwindow* m_window;
 
 private:
@@ -24,6 +26,6 @@ public:
 	void input();
 
 public:
-	ApplicationWindow(const char* t_engineVersion, int t_windowWidth, int t_windowHeight);
+	ApplicationWindow(const char* t_engineVersion, int t_windowWidth, int t_windowHeight, bool t_fullscreen);
 	~ApplicationWindow();
 };
