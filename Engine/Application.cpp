@@ -3,15 +3,16 @@
 #include <iostream>
 
 #include <GLFW/glfw3.h>
+#include <GL/glew.h>
 
 #include "Source/Graphics/ApplicationWindow.h"
 
-const char* engineVersion = "v0.0.3";
+const char* engineVersion = "v0.0.4";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
 
-const bool fullscreen = true;
+const bool fullscreen = false;
 
 /* Error event function */
 static void error_callback(int t_error, const char* t_description)
