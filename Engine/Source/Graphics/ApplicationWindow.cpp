@@ -68,17 +68,17 @@ bool ApplicationWindow::closed()
 void ApplicationWindow::clear()
 {
 	/* Rendering the background color */
-	glClearColor(0.94, 0.97f, 1.0f, 1.0f);
+	glClearColor(0.78f, 0.44f, 0.49f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void ApplicationWindow::input()
 {
 	/* Receives input events */
-	glfwSetKeyCallback(m_window, key_callback);
+	glfwSetKeyCallback(m_window, keyCallback);
 }
 
-void ApplicationWindow::key_callback(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods)
+void ApplicationWindow::keyCallback(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods)
 {
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS)
 	{

@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <GLFW/glfw3.h>
-#include <GL/glew.h>
 
 class ApplicationWindow
 {
@@ -18,7 +17,7 @@ private:
 
 private:
 	void initialize();
-	static void key_callback(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
+	static void keyCallback(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
 
 public:
 	void update();
