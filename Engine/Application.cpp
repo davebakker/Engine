@@ -7,8 +7,9 @@
 
 #include "Source/Graphics/ApplicationWindow.h"
 #include "Source/Graphics/VertexBuffer.h"
+#include "Source/Graphics/ShaderSystem.h"
 
-const char* engineVersion = "v0.0.5";
+const char* engineVersion = "v0.0.6";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
@@ -55,9 +56,15 @@ int main()
 		std::cout << "Successful initialization of the GLEW library" << std::endl;
 	}
 
+	/* Intilization of the buffer */
 	VertexBuffer bufferObject;
-
 	bufferObject.initialize();
+
+	/* Intilization and convertion of the shaders */
+	ShaderSystem shaderSystem;
+	shaderProgramSource source = shaderSystem.convert("Source/Shaders/Template.shader");
+	unsigned int shader = shaderSystem.create(source.vertexSource, source.fragmentSource);
+	glUseProgram(shader);
 
 	/* Application loop */
 	while (!window.closed())
