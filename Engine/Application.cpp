@@ -6,10 +6,10 @@
 #include <GLFW/glfw3.h>
 
 #include "Source/Graphics/ApplicationWindow.h"
-#include "Source/Graphics/VertexBuffer.h"
+#include "Source/Graphics/BufferSystem.h"
 #include "Source/Graphics/ShaderSystem.h"
 
-const char* engineVersion = "v0.0.6";
+const char* engineVersion = "v0.0.7";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
@@ -57,7 +57,7 @@ int main()
 	}
 
 	/* Intilization of the buffer */
-	VertexBuffer bufferObject;
+	BufferSystem bufferObject;
 	bufferObject.initialize();
 
 	/* Intilization and convertion of the shaders */

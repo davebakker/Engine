@@ -21,10 +21,10 @@
     <ClCompile Include="Source\Graphics\ApplicationWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\VertexBuffer.cpp">
+    <ClCompile Include="Source\Graphics\ShaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\ShaderSystem.cpp">
+    <ClCompile Include="Source\Graphics\BufferSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="Source\Graphics\ApplicationWindow.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\VertexBuffer.h">
+    <ClInclude Include="Source\Graphics\ShaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\ShaderSystem.h">
+    <ClInclude Include="Source\Graphics\BufferSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
