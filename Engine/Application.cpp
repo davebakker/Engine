@@ -9,34 +9,18 @@
 #include "Source/Graphics/BufferSystem.h"
 #include "Source/Graphics/ShaderSystem.h"
 
-const char* engineVersion = "v0.0.7";
+const char* engineVersion = "v0.0.8";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
 
 const bool fullscreen = false;
 
-/* Error event function */
-static void errorCallback(int t_error, const char* t_description)
-{
-	fprintf(stderr, "Error: %s\n", t_description);
-}
-
 int main()
 {
-	/* Receives error events */
-	glfwSetErrorCallback(errorCallback);
-
 	/* Intilization of the GLFW library */
-	if (!glfwInit()) 
-	{ 
-		std::cout << "Failed initialization of the GLFW library" << std::endl;
-		return -1; 
-	} 
-	else 
-	{ 
-		std::cout << "Successful initialization of the GLFW library" << std::endl; 
-	}
+	if (!glfwInit()) {  std::cout << "Failed initialization of the GLFW library" << std::endl; return -1;	} 
+	else			 {  std::cout << "Successful initialization of the GLFW library" << std::endl;			}
 
 	/* Sets the amount frames to wait until swapping the buffers */
 	//glfwSwapInterval(1);
@@ -46,19 +30,12 @@ int main()
 
 	/* Intilization of the GLEW library */
 	GLenum error = glewInit();
-
-	if (GLEW_OK != error)
-	{
-		fprintf(stderr, "Error: %s\n", glewGetErrorString(error));
-	}
-	else
-	{
-		std::cout << "Successful initialization of the GLEW library" << std::endl;
-	}
+	if (GLEW_OK != error)	{ fprintf(stderr, "Error: %s\n", glewGetErrorString(error)); }
+	else					{ std::cout << "Successful initialization of the GLEW library" << std::endl; }
 
 	/* Intilization of the buffer */
-	BufferSystem bufferObject;
-	bufferObject.initialize();
+	BufferSystem bufferSystem;
+	bufferSystem.initialize();
 
 	/* Intilization and convertion of the shaders */
 	ShaderSystem shaderSystem;
@@ -71,7 +48,7 @@ int main()
 	{
 		window.clear();
 
-		bufferObject.draw();
+		bufferSystem.draw();
 
 		window.update();
 		window.input();
