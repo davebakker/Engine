@@ -15,6 +15,8 @@ private:
 
 	GLFWwindow* m_window;
 
+	const int m_backgroundColor[4] = { 203, 43, 68, 255 };
+
 private:
 	void initialize();
 	static void keyCallback(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);

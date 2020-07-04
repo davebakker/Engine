@@ -11,7 +11,7 @@ bool ErrorHandler::checkError(const char* t_function, const char* t_file, int t_
 	/* Checks the error and transmits an error message */
 	while (GLenum error = glGetError())
 	{
-		std::cout << "Error (" << error << ") in function (" << t_function << ") in file (" << t_file << ") at line " << t_line << std::endl;
+		std::cout << "ERROR: " << error << " in function (" << t_function << ") in file (" << t_file << ") at line " << t_line << std::endl;
 		return false;
 	}
 

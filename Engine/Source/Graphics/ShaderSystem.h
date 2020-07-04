@@ -20,6 +20,9 @@ private:
 	static void shaderError(unsigned int t_shader);
 
 public:
+	void initialize();
+
+public:
 	static unsigned int create(const std::string& t_vertexShader, const std::string& t_fragmentShader);
 	static unsigned int compile(unsigned int t_type, const std::string& t_source);
 

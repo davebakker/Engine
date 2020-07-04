@@ -1,7 +1,7 @@
 #include "ApplicationWindow.h"
 
 ApplicationWindow::ApplicationWindow(const char* t_engineVersion, int t_windowWidth, int t_windowHeight, bool t_fullscreen) 
-	: m_engineVersion(t_engineVersion), m_windowWidth(t_windowWidth), m_windowHeight(t_windowHeight), m_fullscreen(t_fullscreen)
+: m_engineVersion(t_engineVersion), m_windowWidth(t_windowWidth), m_windowHeight(t_windowHeight), m_fullscreen(t_fullscreen)
 {
 	initialize();
 }
@@ -27,7 +27,6 @@ void ApplicationWindow::initialize()
 	{
 		/* Creates a fullscreen window */
 		m_window = glfwCreateWindow(fullscreenWidth, fullscreenHeight, m_engineVersion, monitor, NULL);
-
 	}
 	else
 	{
@@ -48,6 +47,9 @@ void ApplicationWindow::initialize()
 
 	/* Makes the OpenGL API the current context */
 	glfwMakeContextCurrent(m_window);
+
+	/* Sets the amount of frames to wait until swapping the buffers */
+	glfwSwapInterval(1);
 }
 
 void ApplicationWindow::update()
@@ -68,7 +70,7 @@ bool ApplicationWindow::closed()
 void ApplicationWindow::clear()
 {
 	/* Rendering the background color */
-	glClearColor(0.78f, 0.44f, 0.49f, 1.0f);
+	glClearColor((float)m_backgroundColor[0] / 255, (float)m_backgroundColor[1] / 255, (float)m_backgroundColor[2] / 255, (float)m_backgroundColor[3] / 255);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
@@ -82,6 +84,7 @@ void ApplicationWindow::keyCallback(GLFWwindow* t_window, int t_key, int t_scanc
 {
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS)
 	{
+		/* Sets the window to be closed */
 		glfwSetWindowShouldClose(t_window, GLFW_TRUE);
 	}
 }

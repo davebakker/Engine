@@ -1,5 +1,12 @@
 #include "ShaderSystem.h"
 
+void ShaderSystem::initialize()
+{
+	shaderProgramSource source = convert("Source/Shaders/Template.shader");
+	unsigned int shader = create(source.vertexSource, source.fragmentSource);
+	glUseProgram(shader);
+}
+
 void ShaderSystem::shaderError(unsigned int t_shader)
 {
 	int length;
