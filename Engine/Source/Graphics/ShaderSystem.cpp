@@ -2,9 +2,17 @@
 
 void ShaderSystem::initialize()
 {
+	/* Converts the shaders */
 	shaderProgramSource source = convert("Source/Shaders/Template.shader");
-	unsigned int shader = create(source.vertexSource, source.fragmentSource);
-	glUseProgram(shader);
+	m_shader = create(source.vertexSource, source.fragmentSource);
+	glUseProgram(m_shader);
+
+	setup(m_shader, "uniformColor", 0.98f, 0.69f, 0.19f, 1.0f);
+}
+
+void ShaderSystem::draw()
+{
+	glUseProgram(m_shader);
 }
 
 void ShaderSystem::shaderError(unsigned int t_shader)
@@ -25,6 +33,15 @@ void ShaderSystem::shaderError(unsigned int t_shader)
 
 	/* Deletes the shader */
 	glDeleteShader(t_shader);
+}
+
+void ShaderSystem::setup(unsigned int t_shader, const GLchar* t_name, float t_red, float t_green, float t_blue, float t_alpha)
+{
+	/* Receives the location of the shader variable */
+	int location = glGetUniformLocation(t_shader, t_name);
+
+	/* Writes the data to the shader variable */
+	glUniform4f(location, t_red, t_green, t_blue, t_alpha);
 }
 
 unsigned int ShaderSystem::create(const std::string& t_vertexShader, const std::string& t_fragmentShader)

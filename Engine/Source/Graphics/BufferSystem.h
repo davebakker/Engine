@@ -8,6 +8,7 @@ class BufferSystem
 private:
 	unsigned int m_vertexBuffer;
 	unsigned int m_indexBuffer;
+	unsigned int m_vertexArray;
 
 	float m_vertices[12] =
 	{

@@ -18,9 +18,14 @@ class ShaderSystem
 {
 private:
 	static void shaderError(unsigned int t_shader);
+	static void setup(unsigned int t_shader, const GLchar* t_name, float t_red, float t_green, float t_blue, float t_alpha);
+
+private:
+	unsigned int m_shader;
 
 public:
 	void initialize();
+	void draw();
 
 public:
 	static unsigned int create(const std::string& t_vertexShader, const std::string& t_fragmentShader);

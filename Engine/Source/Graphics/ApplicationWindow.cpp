@@ -17,14 +17,14 @@ ApplicationWindow::~ApplicationWindow()
 
 void ApplicationWindow::initialize()
 {
-	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-
-	const int fullscreenWidth = mode->width;
-	const int fullscreenHeight = mode->height;
-
 	if (m_fullscreen)
 	{
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+		const int fullscreenWidth = mode->width;
+		const int fullscreenHeight = mode->height;
+
 		/* Creates a fullscreen window */
 		m_window = glfwCreateWindow(fullscreenWidth, fullscreenHeight, m_engineVersion, monitor, NULL);
 	}

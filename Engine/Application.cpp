@@ -9,7 +9,7 @@
 #include "Source/Graphics/BufferSystem.h"
 #include "Source/Graphics/ShaderSystem.h"
 
-const char* engineVersion = "v0.0.9";
+const char* engineVersion = "v0.0.10";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
@@ -30,11 +30,11 @@ int main()
 	if (GLEW_OK != error)	{ fprintf(stderr, "Error: %s\n", glewGetErrorString(error)); }
 	else					{ std::cout << "Successful initialization of the GLEW library" << std::endl; }
 
-	/* Intilization of the buffer */
+	/* Intilization of the buffers */
 	BufferSystem bufferSystem;
 	bufferSystem.initialize();
 
-	/* Intilization and convertion of the shaders */
+	/* Intilization of the shaders */
 	ShaderSystem shaderSystem;
 	shaderSystem.initialize();
 
@@ -43,6 +43,7 @@ int main()
 	{
 		window.clear();
 
+		shaderSystem.draw();
 		bufferSystem.draw();
 
 		window.update();
