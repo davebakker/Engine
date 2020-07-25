@@ -1,14 +1,16 @@
 #include "ShaderSystem.h"
 
-void ShaderSystem::initialize()
+ShaderSystem::ShaderSystem()
 {
-	/* Converts the shaders */
+	/* Converts the shader */
 	shaderProgramSource source = convert("Source/Shaders/Template.shader");
 	m_shader = create(source.vertexSource, source.fragmentSource);
 	glUseProgram(m_shader);
 
 	setup(m_shader, "uniformColor", 0.98f, 0.69f, 0.19f, 1.0f);
 }
+
+ShaderSystem::~ShaderSystem() {}
 
 void ShaderSystem::draw()
 {

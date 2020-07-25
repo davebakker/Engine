@@ -6,10 +6,11 @@
 #include <GLFW/glfw3.h>
 
 #include "Source/Graphics/ApplicationWindow.h"
+
 #include "Source/Graphics/BufferSystem.h"
 #include "Source/Graphics/ShaderSystem.h"
 
-const char* engineVersion = "v0.0.10";
+const char* engineVersion = "v0.0.11";
 
 const int windowWidth = 1280;
 const int windowHeight = 720;
@@ -32,11 +33,9 @@ int main()
 
 	/* Intilization of the buffers */
 	BufferSystem bufferSystem;
-	bufferSystem.initialize();
 
 	/* Intilization of the shaders */
 	ShaderSystem shaderSystem;
-	shaderSystem.initialize();
 
 	/* Application loop */
 	while (!window.closed())

@@ -3,11 +3,12 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+
 class BufferSystem
 {
 private:
-	unsigned int m_vertexBuffer;
-	unsigned int m_indexBuffer;
 	unsigned int m_vertexArray;
 
 	float m_vertices[12] =
@@ -24,7 +25,13 @@ private:
 		2, 3, 0
 	};
 
+private:
+	const VertexBuffer& m_vertexBuffer = VertexBuffer(sizeof(m_vertices), m_vertices);
+	const IndexBuffer& m_indexBuffer = IndexBuffer(sizeof(m_indices), m_indices);
+
 public:
-	void initialize();
+	BufferSystem();
+	~BufferSystem();
+
 	void draw();
 };

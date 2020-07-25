@@ -24,13 +24,15 @@ private:
 	unsigned int m_shader;
 
 public:
-	void initialize();
-	void draw();
-
-public:
 	static unsigned int create(const std::string& t_vertexShader, const std::string& t_fragmentShader);
 	static unsigned int compile(unsigned int t_type, const std::string& t_source);
 
 public:
 	static shaderProgramSource convert(const std::string& t_filepath);
+
+public:
+	ShaderSystem();
+	~ShaderSystem();
+
+	void draw();
 };
