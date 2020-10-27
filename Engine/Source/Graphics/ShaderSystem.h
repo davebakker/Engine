@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 
+#include <unordered_map>
+
 struct shaderProgramSource
 {
 	std::string vertexSource;
@@ -17,22 +19,28 @@ struct shaderProgramSource
 class ShaderSystem
 {
 private:
-	static void shaderError(unsigned int t_shader);
-	static void setup(unsigned int t_shader, const GLchar* t_name, float t_red, float t_green, float t_blue, float t_alpha);
+	std::string m_filepath;
+	unsigned int m_shader;
+	std::unordered_map<std::string, int> m_uniformCache;
 
 private:
-	unsigned int m_shader;
+	int getUniform(const std::string& t_location);
 
-public:
 	static unsigned int create(const std::string& t_vertexShader, const std::string& t_fragmentShader);
 	static unsigned int compile(unsigned int t_type, const std::string& t_source);
-
-public:
 	static shaderProgramSource convert(const std::string& t_filepath);
 
+	static void shaderError(unsigned int t_shader);
+
 public:
-	ShaderSystem();
+	ShaderSystem(const std::string& t_filepath);
 	~ShaderSystem();
 
-	void draw();
+public:
+	void bind() const;
+	void unbind() const;
+
+	void setUniform1i(const std::string& t_name, int t_value);
+	void setUniform1f(const std::string& t_name, float t_value);
+	void setUniform4f(const std::string& t_name, float t_value0, float t_value1, float t_value2, float t_value3);
 };

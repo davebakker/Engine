@@ -133,18 +133,25 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Source\Graphics\ApplicationWindow.cpp" />
     <ClCompile Include="Source\Graphics\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Graphics\Texture.cpp" />
+    <ClCompile Include="Source\Graphics\VertexArray.cpp" />
     <ClCompile Include="Source\Graphics\VertexBuffer.cpp" />
     <ClCompile Include="Source\Utilities\ErrorHandler.cpp" />
     <ClCompile Include="Source\Graphics\ShaderSystem.cpp" />
     <ClCompile Include="Source\Graphics\BufferSystem.cpp" />
+    <ClCompile Include="Source\Vendor\STB\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\ApplicationWindow.h" />
+    <ClInclude Include="Source\Graphics\BufferLayout.h" />
     <ClInclude Include="Source\Graphics\IndexBuffer.h" />
+    <ClInclude Include="Source\Graphics\Texture.h" />
+    <ClInclude Include="Source\Graphics\VertexArray.h" />
     <ClInclude Include="Source\Graphics\VertexBuffer.h" />
     <ClInclude Include="Source\Utilities\ErrorHandler.h" />
     <ClInclude Include="Source\Graphics\ShaderSystem.h" />
     <ClInclude Include="Source\Graphics\BufferSystem.h" />
+    <ClInclude Include="Source\Vendor\STB\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Shaders\Template.shader" />

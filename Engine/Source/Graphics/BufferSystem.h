@@ -5,18 +5,16 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexArray.h"
 
 class BufferSystem
 {
-private:
-	unsigned int m_vertexArray;
-
-	float m_vertices[12] =
+	float m_vertices[16] =
 	{
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
+		-0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 1.0f
 	};
 
 	unsigned int m_indices[6] =
@@ -28,6 +26,7 @@ private:
 private:
 	const VertexBuffer& m_vertexBuffer = VertexBuffer(sizeof(m_vertices), m_vertices);
 	const IndexBuffer& m_indexBuffer = IndexBuffer(sizeof(m_indices), m_indices);
+	const VertexArray& m_vertexArray = VertexArray();
 
 public:
 	BufferSystem();

@@ -1,49 +1,58 @@
 #include "ShaderSystem.h"
 
-ShaderSystem::ShaderSystem()
+ShaderSystem::ShaderSystem(const std::string& t_filepath) : m_filepath(t_filepath), m_shader(0)
 {
 	/* Converts the shader */
-	shaderProgramSource source = convert("Source/Shaders/Template.shader");
+	shaderProgramSource source = convert(t_filepath);
 	m_shader = create(source.vertexSource, source.fragmentSource);
-	glUseProgram(m_shader);
 
-	setup(m_shader, "uniformColor", 0.98f, 0.69f, 0.19f, 1.0f);
+	setUniform4f("uniformColor", 0.98f, 0.69f, 0.19f, 1.0f);
 }
 
-ShaderSystem::~ShaderSystem() {}
+ShaderSystem::~ShaderSystem() 
+{
+	glDeleteProgram(m_shader);
+}
 
-void ShaderSystem::draw()
+void ShaderSystem::bind()const
 {
 	glUseProgram(m_shader);
 }
 
-void ShaderSystem::shaderError(unsigned int t_shader)
+void ShaderSystem::unbind() const
 {
-	int length;
-
-	/* Return the parameter from the shader */
-	glGetShaderiv(t_shader, GL_INFO_LOG_LENGTH, &length);
-
-	/* Creates a char array which is allocated on the stack dynamically */
-	char* message = (char*)_malloca(length * sizeof(char));
-
-	/* Returns the information log of the shader */
-	glGetShaderInfoLog(t_shader, length, &length, message);
-
-	std::cout << "Failed to compile the shader" << std::endl;
-	std::cout << message << std::endl;
-
-	/* Deletes the shader */
-	glDeleteShader(t_shader);
+	glUseProgram(0);
 }
 
-void ShaderSystem::setup(unsigned int t_shader, const GLchar* t_name, float t_red, float t_green, float t_blue, float t_alpha)
+int ShaderSystem::getUniform(const std::string& t_name)
 {
+	/* Checks if the uniform cache consists an uniform */
+	if (m_uniformCache.find(t_name) != m_uniformCache.end()) { return m_uniformCache[t_name]; }
+
 	/* Receives the location of the shader variable */
-	int location = glGetUniformLocation(t_shader, t_name);
+	int location = glGetUniformLocation(m_shader, t_name.c_str());
+	if (location == -1) { std::cout << "ERROR: uniform " << t_name << " does not exist." << std::endl; }
 
+	m_uniformCache[t_name] = location;
+	return location;
+}
+
+void ShaderSystem::setUniform1i(const std::string& t_name, int t_value)
+{
 	/* Writes the data to the shader variable */
-	glUniform4f(location, t_red, t_green, t_blue, t_alpha);
+	glUniform1i(getUniform(t_name), t_value);
+}
+
+void ShaderSystem::setUniform1f(const std::string& t_name, float t_value)
+{
+	/* Writes the data to the shader variable */
+	glUniform1f(getUniform(t_name), t_value);
+}
+
+void ShaderSystem::setUniform4f(const std::string& t_name, float t_value0, float t_value1, float t_value2, float t_value3)
+{
+	/* Writes the data to the shader variable */
+	glUniform4f(getUniform(t_name), t_value0, t_value1, t_value2, t_value3);
 }
 
 unsigned int ShaderSystem::create(const std::string& t_vertexShader, const std::string& t_fragmentShader)
@@ -140,4 +149,24 @@ shaderProgramSource ShaderSystem::convert(const std::string& t_filepath)
 
 	/* Returns the shader code */
 	return { stringstream[0].str(), stringstream[1].str() };
+}
+
+void ShaderSystem::shaderError(unsigned int t_shader)
+{
+	int length;
+
+	/* Return the parameter from the shader */
+	glGetShaderiv(t_shader, GL_INFO_LOG_LENGTH, &length);
+
+	/* Creates a char array which is allocated on the stack dynamically */
+	char* message = (char*)_malloca(length * sizeof(char));
+
+	/* Returns the information log of the shader */
+	glGetShaderInfoLog(t_shader, length, &length, message);
+
+	std::cout << "Failed to compile the shader" << std::endl;
+	std::cout << message << std::endl;
+
+	/* Deletes the shader */
+	glDeleteShader(t_shader);
 }
