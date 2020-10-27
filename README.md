@@ -1,5 +1,5 @@
 ## Engine
-I created this engine to learn more about (game) engines and graphics. Along this project came a in-depth learning experience about the programming language C++. The engine is created with the support of the [GLFW getting started guide](https://www.glfw.org/docs/latest/quick.html), the [Learn OpenGL guide](https://learnopengl.com/), and the videos from [Cherno](https://www.youtube.com/user/TheChernoProject).
+I created this engine to learn more about (game) engines and graphics. Along this project came an in-depth learning experience about the programming language C++. The engine is created with the support of the [GLFW getting started guide](https://www.glfw.org/docs/latest/quick.html), the [Learn OpenGL guide](https://learnopengl.com/), and the videos from [Cherno](https://www.youtube.com/user/TheChernoProject).
 
 ### Sources
 - [GLFW](https://www.glfw.org/) (Graphics Library Framework) is a lightweight and multi-platform utility library used with the Open Graphics Library.
